@@ -1,0 +1,25 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* .card {
+    margin-top: 50px;
+    border-radius: 20px;
+} */
+
+label{
+    font-size:17px ;
+    color: rgb(97, 97, 97);
+    font-weight: 90px;
+}
+
+span{
+    color: red  ;
+}
+
+input{
+    height: 40px;
+}
+

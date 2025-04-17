@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    font-size: 14px;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    z-index: 1111;
+    transition: margin-left 0.35s ease-in-out;
+    background-color: #fff;
+    border-right: 1px solid #ced4da;
+    box-shadow: none;
+}
+
+.sidebar-logo {
+    padding: 15px;
+    font-size: 0.9rem;
+    margin-left: 20px;
+    padding:20px;
+}
+
+.sidebar-logo img {
+    width: 150px;
+    margin-left: 7px;
+}
+
+.sidebar-nav {
+    padding: 0;
+}
+
+li.sidebar-item {
+    list-style: none;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sidebar-item a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    margin: 8px 18px;
+    color: #818181;
+    font-size: 17px !important;
+    font-weight: 200;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.sidebar-item i {
+    font-size: 22px !important;
+    margin-right: 15px;
+}
+
+.sidebar-item a:hover {
+    background-color: #1a9dfa;
+    color: #fff;
+}
+
+.sidebar-link.active {
+    background-color: #1a9dfa;
+    color: #ffffff;
+}
+
+#sidebar.collapsed {
+    margin-left: -250px;
+}
+
+#sidebar, .navbar {
+    z-index: 1030;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    width: calc(100% - 250px);
+    background-color: white;
+    z-index: 1112;
+    font-size: 20px;
+    padding: 20px;
+    flex: 1;
+}
+
+.btn.dropdown-toggle {
+    font-size: 15px;
+    z-index: 1030;
+}
+
+div#datatable_wrapper {
+    margin-top: -31px;
+}
+
+.main {
+    margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .navbar {
+        left: 0;
+        width: 100%;
+    }
+
+    .sidebar-item a {
+        padding: 10px 16px;
+        margin: 6px 12px;
+        font-size: 13px;
+    }
+}
