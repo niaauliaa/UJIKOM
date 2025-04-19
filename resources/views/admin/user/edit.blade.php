@@ -13,11 +13,11 @@
         <h5 class="mt-4 mb-2"><b>Edit User</b></h5>
     </div>
 
-    <div class="card p-4" style="width: 1230px;">
+    <div class="card p-4" style="width:960px;">
         <div class="card-body">
             <form action="{{ route('admin.user.update', $user->id) }}" method="POST" enctype="multipart/form-data" >
                 @csrf  
-                @method('PUT') <!-- Tambahkan ini untuk method PUT pada edit -->     
+                @method('PUT') 
 
                <div class="row">
                     <div class="col-md-6 mb-2">

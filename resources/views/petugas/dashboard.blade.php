@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="card p-4" style="width: 1230px;">
+    <div class="card p-4" style="width:970px;">
       <div class="card text-center">
             <div class="card-header">
               Total penjualan hari ini

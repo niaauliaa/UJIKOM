@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="card p-4" style="width: 1230px;">
+    <div class="card p-4" style="width:960px;">
         <div class="row">
             <!--  bar chart -->
             <div class="col-md-6">

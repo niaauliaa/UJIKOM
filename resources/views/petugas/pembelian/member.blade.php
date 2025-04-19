@@ -11,7 +11,6 @@
     <div class="card p-4" style="width: 960px">
         <div class="row">
             <div class="col-md-6 mb-3">
-                {{-- Tabel Produk --}}
                 <table border="1" style="width: 450px; height:108%;">
                     <thead>
                         <tr>
@@ -67,8 +66,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="point" class="form-label">Poin Member</label>
-                        <input type="text" class="form-control" value="{{ $member->points ?? 0 }}" readonly style="background:#e8eee9">                    
-                       
+                        <input type="text" class="form-control" value="{{ $member->points ?? 0 }}" readonly style="background:#e8eee9">                       
                         {{-- <div class="mt-2">
                             <label class="form-label" style="font-size: 12px;">
                                 Poin yang didapatkan: <b>{{ number_format($earnedPoints, 0, ',', '.') }} poin</b>
@@ -92,19 +90,19 @@
                     </div>
                 </form>
                 @push('scripts')
-<script>
-    const checkbox = document.getElementById('check_poin');
-    const estimasi = document.getElementById('estimasiDiskon');
+                <script>
+                    const checkbox = document.getElementById('check_poin');
+                    const estimasi = document.getElementById('estimasiDiskon');
 
-    checkbox?.addEventListener('change', function () {
-        if (this.checked) {
-            estimasi.style.display = 'block';
-        } else {
-            estimasi.style.display = 'none';
-        }
-    });
-</script>
-@endpush
+                    checkbox?.addEventListener('change', function () {
+                        if (this.checked) {
+                            estimasi.style.display = 'block';
+                        } else {
+                            estimasi.style.display = 'none';
+                        }
+                    });
+                </script>
+                @endpush
             </div>
         </div>
     </div>

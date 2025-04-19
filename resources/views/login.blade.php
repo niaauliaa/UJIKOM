@@ -9,15 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .login-container {
-            width: 350px;
-            height: 350px;
-            margin: 160px auto;
-            padding: 35px;
+            width: 330px;
+            height: 300px;
+            margin: 125px auto;
+            padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .btn{
-            margin:15px auto
         }
     </style>
 </head>

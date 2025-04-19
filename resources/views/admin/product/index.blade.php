@@ -12,11 +12,11 @@
         </div>
     </div>
   
-    <div class="card p-4" style="width: 1210px;">
+    <div class="card p-4" style="width:960px;">
         <div class="row">
                 <div class="d-flex justify-content-between align-items-center mb-4">  
                     <a href="{{ route('admin.product.export') }}"  class="btn btn-outline-secondary btn-sm" style=" padding:7px; width:180px; font-size:100%">
-                        Export Excel
+                        Export Excel (.xlsx)
                     </a>
                     <a href="{{ route('admin.product.create') }}" class="btn" style="background:#0b44b6; color:white; padding:7px; width:180px; font-size:100%">
                         + Tambah Produk
@@ -51,11 +51,9 @@
                                         <a href="{{ route('admin.product.edit', $item->id) }}" class=" btn btn-warning text-xs px-3 py-1" style="font-size: 13px; color:white; border-radius: 5px;">
                                             Edit
                                         </a>
-
                                         <button class="btn btn-info text-xs px-3 py-1" data-bs-toggle="modal" data-bs-target="#updateModal{{$item->id}}" style="font-size: 13px; color:white; border-radius: 5px;">
                                             Update Stok
                                         </button>
-
                                         <button class="btn btn-danger text-xs px-3 py-1" data-bs-toggle="modal" data-bs-target="#deletemodal{{$item->id}}" style="font-size: 13px; color:white; border-radius: 5px;">
                                             Hapus
                                         </button>
@@ -101,8 +99,7 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="stock" class="col-form-label text-start d-block">Stok <span style="color:red">*</span></label>
-                                                            <input type="number" class="form-control" name="stock" value="{{ $item['stock']}}" required>
-                                                            {{-- <input type="number" class="form-control" name="stock" value="{{ $item['stock']}}" required min="0" oninput="this.value = this.value.replace(/[^0-9]/g, '');"> --}}
+                                                            <input type="number" class="form-control" name="stock" value="{{ $item['stock']}}" required min="0" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                                             @error('stock')
                                                                 <small class="text-danger">{{ $message }}</small>
                                                             @enderror

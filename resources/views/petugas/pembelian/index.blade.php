@@ -8,7 +8,7 @@
     <small style="font-size:15px; color:#858585;"> > Penjualan</small>     
     <h5 class="mt-4 mb-2"><b>Penjualan</b></h5>
     
-    <div class="card p-4" style="width: 1230px;">
+    <div class="card p-4" style="width:960px">
         <div class="d-flex justify-content-between align-items-center mb-4">        
             <a href="{{ route('petugas.pembelian.export-excel') }}" class="btn btn-outline-secondary btn-sm" style=" padding:7px; width:180px; font-size:100%">Export Penjualan (.xlsx)</a>
             <a href="{{route('petugas.pembelian.create')}}" type="submit" class="btn" style="background: #0b44b6; color:white; padding:7px; width:180px; font-size:100%">+ Tambah Pembelian</a>   
@@ -89,7 +89,7 @@
                                         $total += $subtotal;
                                     @endphp
                                     <tr>
-                                        <td style="padding: 10px;">{{ $produk->name_product }}</td>
+                                        <td style="padding: 10px;">{{ $produk->produk->name_product ?? '-' }}                                        </td>
                                         <td style="padding: 10px; text-align: center;">{{ $produk->qty }}</td>
                                         <td style="padding: 10px;">Rp{{ number_format($produk->price, 0, ',', '.') }}</td>
                                         <td style="padding: 10px;">Rp{{ number_format($subtotal, 0, ',', '.') }}</td>
@@ -102,7 +102,7 @@
                             </tbody>
                         </table>
 
-                        {{-- <p class="mt-3 text-muted">Dibuat pada: {{ $item->created_at->format('Y-m-d H:i:s') }}<br>Oleh: {{ $item->user->name ?? '-' }}</p> --}}
+                        <p class="mt-3 text-muted">Dibuat pada: {{ $item->created_at->format('Y-m-d H:i:s') }}<br>Oleh: {{ $item->user->name ?? '-' }}</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -143,9 +143,8 @@
             }
         });
 
-        // Tambahin jarak antara search & table
-        $('.dataTables_filter').addClass('mb-3'); // search bar
-        $('.dataTables_length').addClass('mb-3'); // dropdown "tampilkan x data"
+        $('.dataTables_filter').addClass('mb-3'); 
+        $('.dataTables_length').addClass('mb-3'); 
     });
 </script>
 @endsection

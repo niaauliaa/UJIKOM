@@ -51,21 +51,22 @@ class UserExport implements FromCollection, WithHeadings, WithStyles, ShouldAuto
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
-                $lastRow = $sheet->getHighestRow();
+    
+                $sheet->insertNewRowBefore(1, 1);
+    
+                $sheet->setCellValue('A1', 'Daftar Pengguna');
+    
                 $lastColumn = $sheet->getHighestColumn();
-                $range = "A1:{$lastColumn}{$lastRow}";
-
-               
-                $sheet->insertNewRowBefore(1, 1); 
-                $sheet->setCellValue('A1', 'Daftar Pengguna'); // Judul tabel
-                $sheet->mergeCells('A1:' . $lastColumn . '1'); 
+                $lastRow = $sheet->getHighestRow();
+    
+                $sheet->mergeCells("A1:{$lastColumn}1");
                 $sheet->getStyle('A1')->applyFromArray([
-                    'font' => ['bold' => true, 'size' => 16], 
-                    'alignment' => ['horizontal' => 'center', 'vertical' => 'center'], 
-                    'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFFF99']], 
+                    'font' => ['bold' => true, 'size' => 16],
+                    'alignment' => ['horizontal' => 'center', 'vertical' => 'center'],
+                    'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFFF99']],
                 ]);
-
-                // Menambahkan gaya pada tabel
+    
+                $range = "A1:{$lastColumn}{$lastRow}";
                 $sheet->getStyle($range)->applyFromArray([
                     'borders' => [
                         'allBorders' => [
@@ -79,14 +80,14 @@ class UserExport implements FromCollection, WithHeadings, WithStyles, ShouldAuto
                         'wrapText' => true,
                     ],
                 ]);
-
-                // Menambahkan gaya pada baris judul (Nama, Email, Role)
-                $sheet->getStyle('A2:' . $lastColumn . '2')->applyFromArray([
+    
+                $sheet->getStyle("A2:{$lastColumn}2")->applyFromArray([
                     'font' => ['bold' => true],
                     'alignment' => ['horizontal' => 'center', 'vertical' => 'center'],
-                    'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFCCE5FF']], // Warna latar belakang biru muda
+                    'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFCCE5FF']],
                 ]);
             },
         ];
     }
+    
 }

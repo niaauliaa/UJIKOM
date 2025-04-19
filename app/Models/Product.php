@@ -31,7 +31,7 @@ class Product extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'price' => 'decimal:2', // Harga dengan 2 desimal
+        'price' => 'decimal:2', 
     ];
 
     public function getFormattedPriceAttribute()

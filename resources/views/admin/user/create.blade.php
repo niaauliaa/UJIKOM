@@ -12,7 +12,7 @@
         <h5 class="mt-4 mb-2"><b>User</b></h5>
     </div>
 
-    <div class="card p-4" style="width: 1230px;">
+    <div class="card p-4" style="width:960px;">
         <div class="card-body">
             <form action="{{ route('admin.user.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf  
@@ -53,8 +53,8 @@
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
+                        </div>
                     </div>
-                </div>
                 
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn" style="background: #0b44b6; color:white; padding:5px; margin-top:1%; width:110px; font-size:100%">Simpan</button>

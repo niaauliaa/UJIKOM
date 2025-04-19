@@ -34,7 +34,6 @@ body {
     padding: 15px;
     font-size: 0.9rem;
     margin-left: 20px;
-    padding:20px;
 }
 
 .sidebar-logo img {
@@ -62,14 +61,14 @@ a {
     padding: 12px 20px;
     margin: 8px 18px;
     color: #818181;
-    font-size: 17px !important;
+    font-size: 15px !important;
     font-weight: 200;
     border-radius: 10px;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .sidebar-item i {
-    font-size: 22px !important;
+    font-size: 18px !important;
     margin-right: 15px;
 }
 

@@ -17,30 +17,40 @@ class PenjualanExport implements FromCollection, WithHeadings, WithStyles, Shoul
 {
     public function collection()
     {
-        return Pembelian::with('customer', 'details.produk')->get()->map(function ($item) {
-            $produkList = $item->details->map(function ($detail) {
-                return $detail->produk->name_product . ' (x' . $detail->qty . ')';
-            })->implode(', ');
-
-            return [
-                'Nama Pelanggan'       => $item->customer->name ?? 'NON-MEMBER',
-                'No. HP'      => $item->customer->phone_number ?? '-',
-                'Produk'               => $produkList,
-                'Total Harga'          => $item->total_price ?? '-',
-                'Total Bayar'          => $item->bayar ?? '-',
-                'Total Diskon Poin'    => ($item->used_points > 0) ? $item->used_points : '-',
-                'Total Kembalian'      => ($item->change > 0) ? $item->change : '-',
-                'Tanggal Pembelian'    => $item->created_at->format('d-m-Y'),
-            ];
-        });
+        $data = collect();
+    
+        $pembelian = Pembelian::with('customer', 'details.produk')->get();
+    
+        foreach ($pembelian as $item) {
+            foreach ($item->details as $detail) {
+                $data->push([
+                    'Id Pelanggan'         => $item->id,
+                    'Nama Pelanggan'       => $item->customer->name ?? 'NON-MEMBER',
+                    'No HP Pelanggan'      => $item->customer->phone_number ?? '-',
+                    'Nama Produk'          => $detail->produk->name_product ?? '-',
+                    'QTY'                  => $detail->qty,
+                    'Harga Satuan'         => $detail->produk->price ?? '-',
+                    'Total Harga'          => $item->total_price ?? '-',
+                    'Total Bayar'          => $item->bayar ?? '-',
+                    'Total Diskon Poin'    => ($item->used_points > 0) ? $item->used_points : '-',
+                    'Total Kembalian'      => ($item->change > 0) ? $item->change : '-',
+                    'Tanggal Pembelian'    => $item->created_at->format('d-m-Y'),
+                ]);
+            }
+        }
+    
+        return $data;
     }
 
     public function headings(): array
     {
         return [
+            'Id Pelanggan',
             'Nama Pelanggan',
-            'No HP Pelanggan',
-            'Produk',
+            'No.Hp',
+            'Nama Produk',
+            'QTY',
+            'Harga Satuan',
             'Total Harga',
             'Total Bayar',
             'Total Diskon Poin',
@@ -64,10 +74,22 @@ class PenjualanExport implements FromCollection, WithHeadings, WithStyles, Shoul
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
-                $lastRow = $sheet->getHighestRow();
-                $lastColumn = $sheet->getHighestColumn();
-                $range = "A1:{$lastColumn}{$lastRow}";
 
+                $sheet->insertNewRowBefore(1, 1);
+                $sheet->setCellValue('A1', 'Daftar Penjualan');
+
+                $lastColumn = $sheet->getHighestColumn();
+                $lastRow = $sheet->getHighestRow();
+
+                $sheet->mergeCells("A1:{$lastColumn}1");
+
+                $sheet->getStyle('A1')->applyFromArray([
+                    'font' => ['bold' => true, 'size' => 16],
+                    'alignment' => ['horizontal' => 'center', 'vertical' => 'center'],
+                    'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFFF99']],
+                ]);
+
+                $range = "A1:{$lastColumn}{$lastRow}";
                 $sheet->getStyle($range)->applyFromArray([
                     'borders' => [
                         'allBorders' => [
@@ -82,11 +104,13 @@ class PenjualanExport implements FromCollection, WithHeadings, WithStyles, Shoul
                     ],
                 ]);
 
-                $sheet->getStyle('A1:' . $lastColumn . '1')->applyFromArray([
+                $sheet->getStyle("A2:{$lastColumn}2")->applyFromArray([
                     'fill' => [
                         'fillType' => Fill::FILL_SOLID,
                         'startColor' => ['argb' => 'FFCCE5FF'],
                     ],
+                    'font' => ['bold' => true],
+                    'alignment' => ['horizontal' => 'center', 'vertical' => 'center'],
                 ]);
             },
         ];

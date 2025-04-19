@@ -50,21 +50,21 @@ class ProductExport implements FromCollection, WithHeadings, WithStyles, ShouldA
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
-                $lastRow = $sheet->getHighestRow();
+    
+                $sheet->insertNewRowBefore(1, 1);
+                $sheet->setCellValue('A1', 'Daftar Produk');
+    
                 $lastColumn = $sheet->getHighestColumn();
-                $range = "A1:{$lastColumn}{$lastRow}";
-
-                // Menambahkan judul di atas tabel
-                $sheet->insertNewRowBefore(1, 1); // Menyisipkan baris baru di atas baris pertama
-                $sheet->setCellValue('A1', 'Daftar Produk'); // Judul tabel
-                $sheet->mergeCells('A1:' . $lastColumn . '1'); // Merge seluruh kolom untuk judul
+                $lastRow = $sheet->getHighestRow(); 
+    
+                $sheet->mergeCells("A1:{$lastColumn}1");
                 $sheet->getStyle('A1')->applyFromArray([
-                    'font' => ['bold' => true, 'size' => 16], // Font bold dan ukuran besar untuk judul
-                    'alignment' => ['horizontal' => 'center', 'vertical' => 'center'], // Pusatkan teks
-                    'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFFF99']], // Latar belakang kuning
+                    'font' => ['bold' => true, 'size' => 16],
+                    'alignment' => ['horizontal' => 'center', 'vertical' => 'center'],
+                    'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFFF99']],
                 ]);
-
-                // Menambahkan gaya pada tabel
+    
+                $range = "A1:{$lastColumn}{$lastRow}";
                 $sheet->getStyle($range)->applyFromArray([
                     'borders' => [
                         'allBorders' => [
@@ -78,14 +78,13 @@ class ProductExport implements FromCollection, WithHeadings, WithStyles, ShouldA
                         'wrapText' => true,
                     ],
                 ]);
-
-                // Menambahkan gaya pada baris judul (Nama Produk, Harga, Stok)
-                $sheet->getStyle('A2:' . $lastColumn . '2')->applyFromArray([
+    
+                $sheet->getStyle("A2:{$lastColumn}2")->applyFromArray([
                     'font' => ['bold' => true],
                     'alignment' => ['horizontal' => 'center', 'vertical' => 'center'],
-                    'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFCCE5FF']], // Warna latar belakang biru muda
+                    'fill' => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['argb' => 'FFCCE5FF']],
                 ]);
             },
         ];
     }
-}
+}    

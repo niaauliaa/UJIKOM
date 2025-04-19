@@ -12,7 +12,7 @@
         </div>
     </div>
   
-    <div class="card p-4" style="width: 1210px;">
+    <div class="card p-4" style="width:960px">
         <div class="row">
             <div id="content" class="tab-content">
                 <table class="table table-sm">

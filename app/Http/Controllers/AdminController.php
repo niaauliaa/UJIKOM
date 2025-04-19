@@ -17,8 +17,6 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ProductExport;
 use App\Exports\UserExport;
 
-
-
 class AdminController extends Controller
 {
 

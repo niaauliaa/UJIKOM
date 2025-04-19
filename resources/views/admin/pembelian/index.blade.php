@@ -8,7 +8,7 @@
     <small style="font-size:15px; color:#858585;"> > Penjualan</small>     
     <h5 class="mt-4 mb-2"><b>Penjualan</b></h5>
     
-    <div class="card p-4" style="width: 1230px;">
+    <div class="card p-4" style="width:960px;">
         <div class="d-flex justify-content-between align-items-center mb-4">        
             <a href="{{ route('admin.pembelian.export-excel') }}" class="btn btn-outline-secondary btn-sm" style=" padding:7px; width:180px; font-size:100%">Export Penjualan (.xlsx)</a>
         </div>
@@ -88,7 +88,7 @@
                                         $total += $subtotal;
                                     @endphp
                                     <tr>
-                                        <td style="padding: 10px;">{{ $produk->name_product }}</td>
+                                        <td style="padding: 10px;">{{ $produk->produk->name_product ?? '-' }}                                        </td>
                                         <td style="padding: 10px; text-align: center;">{{ $produk->qty }}</td>
                                         <td style="padding: 10px;">Rp{{ number_format($produk->price, 0, ',', '.') }}</td>
                                         <td style="padding: 10px;">Rp{{ number_format($subtotal, 0, ',', '.') }}</td>

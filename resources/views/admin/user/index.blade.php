@@ -12,14 +12,14 @@
         </div>
     </div>
   
-    <div class="card p-4" style="width: 1230px;">
+    <div class="card p-4" style="width:960px;">
         <div class="row">
             <div class="d-flex justify-content-between align-items-center mb-4">  
                 <a href="{{ route('admin.user.export') }}"  class="btn btn-outline-secondary btn-sm" style=" padding:7px; width:180px; font-size:100%">
-                    Export Excel
+                    Export Excel (.xlsx)
                 </a>
                 <a href="{{ route('admin.user.create') }}" class="btn" style="background:#0b44b6; color:white; padding:7px; width:180px; font-size:100%">
-                    + Tambah Produk
+                    + Tambah User
                 </a>       
             </div>
             <div id="content" class="tab-content">

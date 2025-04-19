@@ -8,8 +8,8 @@
     <small style="font-size: 15px; color: #858585;"> > Pembayaran</small>
     <h5 class="mt-4 mb-3"><b>Pembayaran</b></h5>
     
-    <div class="card p-4" style="width: 1230px;">
-            <div class="d-flex justify-content-between align-items-center mb-3">    
+    <div class="card p-4" style="width:960px">
+        <div class="d-flex justify-content-between align-items-center mb-3">    
             <div>
                 <a href="{{ route('petugas.exportPDF', $pembelian->id) }}" target="_blank" class="btn btn-sm" style="background-color: #0d6efd; color: white;">
                     Unduh
@@ -79,16 +79,13 @@
                 </div>
                 <div class="d-flex flex-column align-items-end">
                     @if($pembelian->used_points > 0)
-                        {{-- Harga yang dicoret harus menampilkan harga asli + poin yang digunakan --}}
                         <div class="fs-6 text-decoration-line-through text-white">
                             Rp. {{ number_format($pembelian->total_price, 0, ',', '.') }}
                         </div>
-                        {{-- Harga yang dibayar setelah poin dikurangi --}}
                         <div class="fs-5 fw-bold">
                             Rp. {{ number_format($pembelian->total_price - $pembelian->used_points, 0, ',', '.') }}
                         </div> 
                     @else
-                        {{-- Jika tidak ada poin yang digunakan, tampilkan total tanpa perubahan --}}
                         <div class="fs-5 fw-bold">
                             Rp. {{ number_format($pembelian->total_price, 0, ',', '.') }}
                         </div> 

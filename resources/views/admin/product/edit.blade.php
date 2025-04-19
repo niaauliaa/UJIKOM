@@ -13,11 +13,11 @@
         <h5 class="mb-0 fw-bold">Edit Produk</h5>
     </div>
 
-    <div class="card p-4" style="width: 1230px;">
+    <div class="card p-4" style="width:960px;">
         <div class="card-body">
             <form action="{{ route('admin.product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf  
-                @method('PUT') <!-- Tambahkan ini untuk method PUT pada edit -->     
+                @method('PUT')     
 
                 <div class="row">
                     <div class="col-md-6 mb-2">
@@ -67,16 +67,14 @@
 <script>
     const priceInput = document.getElementById('rupiah');
 
-    // Menampilkan simbol "Rp." dan pemisah ribuan
     priceInput.addEventListener('input', function() {
-        let value = priceInput.value.replace(/[^\d]/g, ''); // Hapus karakter selain angka
-        priceInput.value = 'Rp. ' + new Intl.NumberFormat('id-ID').format(value); // Format dengan pemisah ribuan
+        let value = priceInput.value.replace(/[^\d]/g, ''); 
+        priceInput.value = 'Rp. ' + new Intl.NumberFormat('id-ID').format(value); 
     });
 
-    // Sebelum form disubmit, hapus simbol "Rp." dan titik agar Laravel bisa memprosesnya sebagai angka
     document.querySelector('form').addEventListener('submit', function() {
-        let value = priceInput.value.replace(/[^\d]/g, ''); // Hapus simbol "Rp." dan titik
-        priceInput.value = value; // Kirim nilai yang hanya berisi angka ke server
+        let value = priceInput.value.replace(/[^\d]/g, ''); 
+        priceInput.value = value; 
     });
 </script>
 

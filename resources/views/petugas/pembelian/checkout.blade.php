@@ -8,7 +8,7 @@
     <small style="font-size: 15px; color: #858585;"> > Penjualan</small>
     <h5 class="mt-4 mb-2"><b>Penjualan</b></h5>
 
-    <div class="card p-4" style="width: 1230px;">
+    <div class="card p-4" style="width:960px">
         <h5 class="mb-4">Produk yang Dipilih</h5>  
 
         <div class="row">
@@ -100,7 +100,6 @@
 
     const totalHarga = {{ $total }};
 
-    // Fungsi format dengan pemisah titik (untuk format rupiah)
     function formatRupiah(angka) {
         return new Intl.NumberFormat('id-ID', {
             style: 'decimal',
@@ -108,16 +107,12 @@
         }).format(angka);
     }
 
-    // Fungsi untuk mengecek apakah bayar cukup dan memformat input
     function cekBayarDanFormat() {
-        // Menghapus karakter selain angka
         let inputValue = priceInput.value.replace(/\D/g, '');
         const bayar = parseInt(inputValue || 0);
 
-        // Format angka dengan titik sebagai pemisah ribuan
         priceInput.value = formatRupiah(bayar);
 
-        // Cek apakah bayar cukup
         if (bayar >= totalHarga) {
             simpanBtn.disabled = false;
             warning.classList.add('d-none');
@@ -127,7 +122,6 @@
         }
     }
 
-    // Event listener ketika role berubah
     roleSelect.addEventListener('change', function () {
         if (this.value === 'member') {
             phoneField.style.display = 'block';
@@ -137,12 +131,10 @@
         }
     });
 
-    // Menampilkan field nomor telepon jika sudah memilih 'member'
     if (roleSelect.value === 'member') {
         phoneField.style.display = 'block';
     }
 
-    // Event listener ketika mengetik di input total bayar
     priceInput.addEventListener('input', cekBayarDanFormat);
 });
 
